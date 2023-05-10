@@ -990,7 +990,7 @@ color: #000;
 .display-requestsss .grand-total {
   width: 90%;
   background: var(--pink);
-  color: #fff;
+  color: #ffff;
   cursor: pointer;
 }
 .checkout-form form {

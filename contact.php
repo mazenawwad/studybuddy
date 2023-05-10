@@ -1,30 +1,30 @@
 <?php
-// include 'connection.php';
+include 'connection.php';
 session_start();
 
-// $user_id = $_SESSION['user_id'];
-// if (!isset($user_id)) {
-//     header('location: login.php');
-// }
+$user_id = $_SESSION['user_id'];
+if (!isset($user_id)) {
+    header('location: login.php');
+}
 
 /* send message */
-// if (isset($_POST['submit-btn'])) {
-//     $message = mysqli_real_escape_string($connection, $_POST['message']);
-//     $user_query = mysqli_query($connection, "SELECT * FROM `users` WHERE id = '$user_id'");
-//     $user_data = mysqli_fetch_assoc($user_query);
-//     $name = $user_data['name'];
-//     $email = $user_data['email'];
-//     $select_message = mysqli_query($connection, "SELECT * FROM `messages` WHERE name = '$name' AND email= '$email' AND 
-//     message='$message'") or die('query failed1');
+if (isset($_POST['submit-btn'])) {
+    $message = mysqli_real_escape_string($connection, $_POST['message']);
+    $user_query = mysqli_query($connection, "SELECT * FROM `users` WHERE id = '$user_id'");
+    $user_data = mysqli_fetch_assoc($user_query);
+    $name = $user_data['name'];
+    $email = $user_data['email'];
+    $select_message = mysqli_query($connection, "SELECT * FROM `messages` WHERE name = '$name' AND email= '$email' AND 
+    message='$message'") or die('query failed1');
 
-//     if (mysqli_num_rows($select_message) > 0) {
-//         // $message[] = 'message already sent';
-//     } else {
-//         mysqli_query($connection, "INSERT INTO `messages`(`user_id`, `name`,`email`, `message`) 
-//         VALUES ('$user_id', '$name', '$email', '$message')") or die('query failed2');
-//         // $message[] = 'message sent successfully';
-//     }
-// }
+    if (mysqli_num_rows($select_message) > 0) {
+        $message[] = 'message already sent';
+    } else {
+        mysqli_query($connection, "INSERT INTO `messages`(`user_id`, `name`,`email`, `message`) 
+        VALUES ('$user_id', '$name', '$email', '$message')") or die('query failed2');
+        $message[] = 'message sent successfully';
+    }
+}
 ?>
 
 <style type="text/css">
@@ -45,14 +45,14 @@ session_start();
 
 <body>
  <?php
-    // if (isset($message)) {
-    //     foreach ($message as $message) {
-    //         echo '<div class="message">
-    //                     <span>'. $message .'</span>
-    //                     <i class="bi bi-x-circle" onclick="this.parentElement.remove()"></i>
-    //                 </div>';
-    //     }
-    // }
+    if (isset($message)) {
+        foreach ($message as $message) {
+            echo '<div class="message">
+                        <span>'. $message .'</span>
+                        <i class="bi bi-x-circle" onclick="this.parentElement.remove()"></i>
+                    </div>';
+        }
+    }
     ?> 
     <?php include 'header.php'; ?> 
     <div class="banner">

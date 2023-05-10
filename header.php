@@ -1,8 +1,8 @@
 <?php
-    // if (isset($_POST['logout'])) {
-    //     header('location: login.php');
-    //     exit;
-    // }
+    if (isset($_POST['logout'])) {
+        header('location: login.php');
+        exit;
+    }
     ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,31 +27,31 @@
             </nav>
             <div class="icons">
                 <?php
-                // // check if user has sent a requests
-                // $select_requests = mysqli_query($connection, "SELECT * FROM `requests` WHERE user_id = '$user_id'") or die('query failed');
-                // $requests_num_rows = mysqli_num_rows($select_requests);
+                // check if user has sent a requests
+                $select_requests = mysqli_query($connection, "SELECT * FROM `requests` WHERE user_id = '$user_id'") or die('query failed');
+                $requests_num_rows = mysqli_num_rows($select_requests);
 
-                // if ($requests_num_rows > 0) {
-                //     // if requests exists, check if it is accepted
-                //     $requests = mysqli_fetch_assoc($select_requests);
-                //     $requests_status = $requests['status'];
-                //     if ($requests_status == 'accepted') {
-                //         echo '<i class="bi bi-person-check" id="requests-btn"></i>';
-                //     } else {
-                //         echo '<a href="requests.php"><i class="bi bi-person-plus" id="requests-btn"></i></a>';
-                //     }
-                // } else {
-                //     // if no requests exists, show requests button
-                //     echo '<a href="requests.php"><i class="bi bi-person-plus" id="requests-btn"></i></a>';
-                // }
+                if ($requests_num_rows > 0) {
+                    // if requests exists, check if it is accepted
+                    $requests = mysqli_fetch_assoc($select_requests);
+                    $requests_status = $requests['status'];
+                    if ($requests_status == 'accepted') {
+                        echo '<i class="bi bi-person-check" id="requests-btn"></i>';
+                    } else {
+                        echo '<a href="requests.php"><i class="bi bi-person-plus" id="requests-btn"></i></a>';
+                    }
+                } else {
+                    // if no requests exists, show requests button
+                    echo '<a href="requests.php"><i class="bi bi-person-plus" id="requests-btn"></i></a>';
+                }
 
-                // // show favorites icon
-                // $select_favorites = mysqli_query($connection, "SELECT * FROM `favorites` WHERE user_id = '$user_id'") or die('query failed');
-                // $favorites_num_rows = mysqli_num_rows($select_favorites);
-                // echo '<a href="favorites.php"><i class="bi bi-heart"></i><span>(' . $favorites_num_rows . ')</span></a>';
+                // show favorites icon
+                $select_favorites = mysqli_query($connection, "SELECT * FROM `favorites` WHERE user_id = '$user_id'") or die('query failed');
+                $favorites_num_rows = mysqli_num_rows($select_favorites);
+                echo '<a href="favorites.php"><i class="bi bi-heart"></i><span>(' . $favorites_num_rows . ')</span></a>';
 
-                // echo '<i class="bi bi-list" id="menu-btn"></i>';
-                // echo '<i class="bi bi-person" id="user-btn"></i>';
+                echo '<i class="bi bi-list" id="menu-btn"></i>';
+                echo '<i class="bi bi-person" id="user-btn"></i>';
                 ?>
             </div>
 

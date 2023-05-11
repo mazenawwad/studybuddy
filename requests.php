@@ -90,7 +90,7 @@ $status = isset($requests) ? $requests['status'] : null;
         </div>
         <?php else: ?>
         <div class="form-section">
-            <?php if ($status == 'approved'): ?>
+            <?php if ($status == 'accepted'): ?>
             <h1>Your tutor request has been approved. Thank you!</h1>
             <?php elseif ($status == 'rejected'): ?>
             <h1>Your tutor request has been rejected. Please try again later.</h1>

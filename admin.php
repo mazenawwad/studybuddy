@@ -8,6 +8,7 @@ if (!isset($admin_id)) {
 if (isset($_POST['logout'])) {
     session_destroy();
     header('location: login.php');
+    //test
 }
 ?>
 
@@ -48,7 +49,6 @@ if (isset($_POST['logout'])) {
                 </h3>
                 <p>Certified Tutors</p>
             </div>
-
             <div class="box">
                 <?php
                 $select_users = mysqli_query($connection, "SELECT * FROM `users` WHERE user_type = 'user'") or die('Query Failed5');

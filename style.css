@@ -326,7 +326,7 @@ header {
   text-align: center;
 }
 .requests-container form select {
-  width: 100%;
+  width: 70%;
   margin: 1rem 0;
   padding: 0.5rem 0;
   cursor: pointer;
@@ -407,6 +407,10 @@ body {
   background-color: #0069d9;
 }
 
+.tutor_applications{
+  display: grid;
+  grid-template-columns: auto auto auto;
+}
 
 /* media screen */
 @media (max-width: 991px) {
@@ -419,7 +423,7 @@ body {
     left: 0;
     right: 0;
     border-top: 1px solid var(--blue);
-    background: var(--white-alpha-25);
+    background: #7f909b;
     transition: 0.3s ease;
     clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
   }

@@ -67,7 +67,7 @@ if (isset($_POST['update_request'])) {
 
        if (mysqli_num_rows($select_requests) > 0) {
            ?>
-            <div class="form-container">
+            <div class="tutor_applications">
                 <?php while ($fetch_requests = mysqli_fetch_assoc($select_requests)) { ?>
                 <div class="box">
                     <p>User Name: <span><?php echo $fetch_requests['name']; ?></span></p>

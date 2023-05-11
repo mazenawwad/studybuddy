@@ -9,13 +9,25 @@ if (isset($_POST['logout'])) {
     session_destroy();
     header('location: login.php');
 }
-/* delete requests detail from database */
+/* delete user details from database */
 if (isset($_GET['delete'])) {
     $delete_id = $_GET['delete'];
+
+    // delete user's requests
+    mysqli_query($connection, "DELETE FROM `requests` WHERE user_id = '$delete_id'") or die('Query Failed');
+
+    // delete user's reviews
+    mysqli_query($connection, "DELETE FROM `reviews` WHERE user_id = '$delete_id'") or die('Query Failed');
+    mysqli_query($connection, "DELETE FROM `reviews` WHERE tutor_id = '$delete_id'") or die('Query Failed');
+
+    // delete user's favorites
+    mysqli_query($connection, "DELETE FROM `favorites` WHERE user_id = '$delete_id'") or die('Query Failed');
+
+    // delete user
     mysqli_query($connection, "DELETE FROM `users` WHERE id = '$delete_id'") or die('Query Failed');
+    
     header('location:admin_user.php');
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">

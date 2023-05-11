@@ -129,7 +129,7 @@
     </div> -->
     <section class="home-contact">
         <h1>have any question ?</h1>
-        <p style="font-size: 20px;"> If you have any questions or need further clarification, please don't hesitate to reach out.
+        <p style="font-size: 20px;"> If you have any questions, please don't hesitate to reach out.
              Our team is here to assist you and provide the information you need. Feel free to contact us
               and we will get back to you as soon as possible. We value your inquiries and look forward to
                helping you with any concerns you may have.</p>

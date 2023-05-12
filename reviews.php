@@ -28,7 +28,6 @@ if (!isset($user_id)) {
     <?php include 'header.php'; ?>
     <div class="banner">
         <h1>tutor detail</h1>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
     </div>
     <?php
    if (isset($message)) {
@@ -46,7 +45,7 @@ if (!isset($user_id)) {
         <div class="box-container">
             <?php
         $tutor_id = $_GET['pid'];
-        $select_tutor = mysqli_query($connection, "SELECT * FROM `tutors` WHERE `id` = '$tutor_id'") or die('Query failed');
+        $select_tutor = mysqli_query($connection, "SELECT * FROM `tutors` WHERE `id` = '$tutor_id'") or die('Query failed1');
         $tutor = mysqli_fetch_assoc($select_tutor);
         ?>
             <form action="" method="post" class="box">
@@ -95,7 +94,7 @@ if (isset($_POST['reviews-rating']) && isset($_POST['reviews-text'])) {
     $userId = $user_id; // Replace with the actual user ID
 
     // Check if user ID and tutor ID are the same
-    if ($userId == $_SESSION['user_id']) {
+    if ($userId == $tutorId) {
         $message[] = "You cannot review yourself.";
     } else {
         // Check if user has already reviewed this tutor
@@ -105,7 +104,7 @@ if (isset($_POST['reviews-rating']) && isset($_POST['reviews-text'])) {
             $message[] = "You have already reviewed this tutor.";
         } else {
             // Insert new reviews into database
-            $insert_query = mysqli_query($connection, "INSERT INTO `reviews` (tutor_id, user_id, rating, text) VALUES ('$tutorId', '$userId', '$rating', '$text')") or die("query failed");
+            $insert_query = mysqli_query($connection, "INSERT INTO `reviews` (tutor_id, user_id, rating, text) VALUES ('$tutorId', '$userId', '$rating', '$text')") or die("query failed2");
 
             // Update tutor's ratings
             $select_query = mysqli_query($connection, "SELECT total_ratings, raters FROM tutors WHERE id = '$tutorId'");
@@ -118,7 +117,7 @@ if (isset($_POST['reviews-rating']) && isset($_POST['reviews-text'])) {
             $newRaters = $currentRaters + 1;
 
             // Update the tutor's row with the new values
-            $update_query = mysqli_query($connection, "UPDATE tutors SET total_ratings = '$newTotalRatings', raters = '$newRaters' WHERE id = '$tutorId'") or die("query failed");
+            $update_query = mysqli_query($connection, "UPDATE tutors SET total_ratings = '$newTotalRatings', raters = '$newRaters' WHERE id = '$tutorId'") or die("query failed3");
 
             // Display success message
             $message[] = "reviews submitted successfully.";

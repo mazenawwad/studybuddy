@@ -51,6 +51,7 @@ $status = isset($requests) ? $requests['status'] : null;
         <h1>Tutor Request Form</h1>
         <?php endif; ?>
     </div>
+    <br><br><br><br><br><br>
     <div class="form-container">
         <?php if (!isset($requests)): ?>
         <div class="form-section">

@@ -17,13 +17,13 @@
                 <ul class="socials">
                     <li>Email: <i class="bi bi-envelope-fill"></i> mohammadhammoud14@lau.edu</li>
                     <li>Phone: <i class="bi bi-whatsapp"></i>  +961 70 554 528 </li>
-                    <li>LinkedIn: <i class="bi bi-linkedin"></i><a href="https://www.linkedin.com/in/mohammad-hammoud-088159233/"> Mohammad Hammoud</a></li>
+                    <li>LinkedIn: <i class="bi bi-linkedin"></i><a href="https://www.linkedin.com/in/mohammad-hammoud-088159233/" target="_blank"> Mohammad Hammoud</a></li>
                 </ul>
                 <p>-Mazen Awwad</p>
                 <ul class="socials">
                     <li>Email: <i class="bi bi-envelope-fill"></i> mazen.awwad01@lau.edu</li>
                     <li>Phone: <i class="bi bi-whatsapp"></i>  +961 70 357 253 </li>
-                    <li>LinkedIn: <i class="bi bi-linkedin"></i><a href="https://www.linkedin.com/in/mazenawwad/"> Mazen Awwad</a></li>
+                    <li>LinkedIn: <i class="bi bi-linkedin"></i><a href="https://www.linkedin.com/in/mazenawwad/" target="_blank"> Mazen Awwad</a></li>
                 </ul>
             </div>
             <div class="card">
@@ -63,7 +63,7 @@
         </div>
         </div>
         <div class="bottom-footer">
-            <p>all right reserved ® - Mazen and Hammoud </p>
+            <p>all right reserved ® - Mazen Awwad and Mohammad Hammoud </p>
         </div>
     </footer>
 </body>

@@ -804,7 +804,7 @@ color: #000;
 .services .box-container .box h3 {
   margin-top: 2rem;
   font-size: 2rem;
-  color: red;
+  color: #242fc7;
 }
 .services .box-container .box p {
   font-family: "Sarabun", sans-serif;
@@ -833,7 +833,7 @@ color: #000;
   text-transform: uppercase;
   margin: 0.5rem 0;
 }
-.stylist p {
+.stylist p , h2{
   text-align: center;
   text-transform: capitalize;
 }

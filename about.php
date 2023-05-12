@@ -65,7 +65,7 @@ if (!isset($user_id)) {
     </div>
     <div class="stylist">
         <h1 class="title">StudyBuddy</h1>
-        <p>Meet the Miracle Team</p>
+        <h2>Meet the Miracle Team</h2>
         <div class="box-container">
             <div class="box">
                 <div class="image-box">

@@ -30,7 +30,7 @@ if (isset($_POST['logout'])) {
         <div class="box-container">
             <div class="box">
                 <?php
-                $select_requests = mysqli_query($connection, "SELECT * FROM `requests`") or die('requests Failed3');
+                $select_requests = mysqli_query($connection, "SELECT * FROM `requests` WHERE `status` != 'accepted'") or die('requests Failed3');
                 $num_of_requests = mysqli_num_rows($select_requests);
                 ?>
                 <h3>

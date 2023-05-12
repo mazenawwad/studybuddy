@@ -70,7 +70,7 @@ if (isset($_POST['delete_tutor'])) {
         <?php
             }
         } else {
-            echo '<img src="image/empty.webp">';
+            
         }
         ?>
 

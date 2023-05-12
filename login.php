@@ -1,6 +1,7 @@
 <?php
-include 'connection.php';
 session_start();
+include 'connection.php';
+
 if (isset($_POST['submit-btn'])) {
 
     $filter_email = filter_var($_POST['email'], FILTER_SANITIZE_STRING);

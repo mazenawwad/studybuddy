@@ -15,18 +15,16 @@ if (isset($_GET['delete'])) {
 
     // delete user's requests
     mysqli_query($connection, "DELETE FROM `requests` WHERE user_id = '$delete_id'") or die('Query Failed');
-
+    mysqli_query($connection, "DELETE FROM `messages` WHERE user_id = '$delete_id'") or die('Query Failed');
     // delete user's reviews
     mysqli_query($connection, "DELETE FROM `reviews` WHERE user_id = '$delete_id'") or die('Query Failed');
-    mysqli_query($connection, "DELETE FROM `reviews` WHERE tutor_id = '$delete_id'") or die('Query Failed');
-
+   
     // delete user's favorites
     mysqli_query($connection, "DELETE FROM `favorites` WHERE user_id = '$delete_id'") or die('Query Failed');
-
+ 
     // delete user
     mysqli_query($connection, "DELETE FROM `users` WHERE id = '$delete_id'") or die('Query Failed');
-    
-    header('location:admin_user.php');
+  
 }
 ?>
 <!DOCTYPE html>
@@ -69,21 +67,21 @@ if (isset($_GET['delete'])) {
                 if (mysqli_num_rows($select_users) > 0) {
                     while ($fetch_users = mysqli_fetch_assoc($select_users)) {
                         ?>
-                        <div class="box">
-                            <p>User ID: <span><?php echo $fetch_users['id']; ?></span></p>
-                            <p>User Name: <span><?php echo $fetch_users['name']; ?></span></p>
-                            <p>Email: <span><?php echo $fetch_users['email']; ?></span></p>
-                            <p>User Type: <span style="color:<?php if ($fetch_users['user_type'] == 'admin') {
+            <div class="box">
+                <p>User ID: <span><?php echo $fetch_users['id']; ?></span></p>
+                <p>User Name: <span><?php echo $fetch_users['name']; ?></span></p>
+                <p>Email: <span><?php echo $fetch_users['email']; ?></span></p>
+                <p>User Type: <span style="color:<?php if ($fetch_users['user_type'] == 'admin') {
                                 echo 'red';
                             } else {
                                 echo 'green';
                             } ?>">
-                                    <?php echo $fetch_users['user_type']; ?>
-                                </span></p>
-                            <a href="admin_user.php?delete=<?php echo $fetch_users['id']; ?>" class="delete"
-                                onclick="return confirm('Are you sure you want to delete this user?')">Delete</a>
-                        </div>
-                        <?php
+                        <?php echo $fetch_users['user_type']; ?>
+                    </span></p>
+                <a href="admin_user.php?delete=<?php echo $fetch_users['id']; ?>" class="delete"
+                    onclick="return confirm('Are you sure you want to delete this user?')">Delete</a>
+            </div>
+            <?php
                     }
                 } else {
                     echo '<p>No results found.</p>';
@@ -93,21 +91,21 @@ if (isset($_GET['delete'])) {
                 if (mysqli_num_rows($select_users) > 0) {
                     while ($fetch_users = mysqli_fetch_assoc($select_users)) {
                         ?>
-                        <div class="box">
-                            <p>User ID: <span><?php echo $fetch_users['id']; ?></span></p>
-                            <p>User Name: <span><?php echo $fetch_users['name']; ?></span></p>
-                            <p>Email: <span><?php echo $fetch_users['email']; ?></span></p>
-                            <p>User Type: <span style="color:<?php if ($fetch_users['user_type'] == 'admin') {
+            <div class="box">
+                <p>User ID: <span><?php echo $fetch_users['id']; ?></span></p>
+                <p>User Name: <span><?php echo $fetch_users['name']; ?></span></p>
+                <p>Email: <span><?php echo $fetch_users['email']; ?></span></p>
+                <p>User Type: <span style="color:<?php if ($fetch_users['user_type'] == 'admin') {
                                 echo 'red';
                             } else {
                                 echo 'green';
                             } ?>">
-                                    <?php echo $fetch_users['user_type']; ?>
-                                </span></p>
-                            <a href="admin_user.php?delete=<?php echo $fetch_users['id']; ?>" class="delete"
-                                onclick="return confirm('Are you sure you want to delete this user?')">Delete</a>
-                        </div>
-                        <?php
+                        <?php echo $fetch_users['user_type']; ?>
+                    </span></p>
+                <a href="admin_user.php?delete=<?php echo $fetch_users['id']; ?>" class="delete"
+                    onclick="return confirm('Are you sure you want to delete this user?')">Delete</a>
+            </div>
+            <?php
                     }
                 } else {
                     echo '<p>No registered users found.</p>';

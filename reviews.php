@@ -11,8 +11,6 @@ if (!isset($user_id)) {
 
 ?>
 <style type="text/css">
-<?php include 'main.css';
-?>
 </style>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,18 +31,17 @@ if (!isset($user_id)) {
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
     </div>
     <?php
-    if (isset($message)) {
-        foreach ($message as $message) {
-            echo '
-                <div class="message">
-                    <span>' . $m . '</span>
-                    <i class="bi bi-x-circle" onclick="this.parentElement.remove()"></i>
-                </div> 
-            ';
-        }
-    }
-    
-    ?>
+   if (isset($message)) {
+       foreach ($message as $msg) {
+           echo '
+               <div class="message">
+                   <span>' .$msg. '</span>
+                   <i class="bi bi-x-circle" onclick="this.parentElement.remove()"></i>
+               </div>
+               ';
+           }
+       }
+   ?>
     <div class="view-img">
         <div class="box-container">
             <?php
@@ -98,8 +95,8 @@ if (isset($_POST['reviews-rating']) && isset($_POST['reviews-text'])) {
     $userId = $user_id; // Replace with the actual user ID
 
     // Check if user ID and tutor ID are the same
-    if ($userId == $tutorId) {
-        $message[] = "You cannot reviews yourself.";
+    if ($userId == $_SESSION['user_id']) {
+        $message[] = "You cannot review yourself.";
     } else {
         // Check if user has already reviewed this tutor
         $existing_review_query = mysqli_query($connection, "SELECT * FROM `reviews` WHERE tutor_id = '$tutorId' AND user_id = '$userId'");

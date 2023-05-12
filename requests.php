@@ -12,16 +12,17 @@ if (isset($_POST['submit-btn'])) {
     $name = mysqli_real_escape_string($connection, $_POST['name']);
     $email = mysqli_real_escape_string($connection, $_POST['email']);
     $courses = mysqli_real_escape_string($connection, $_POST['courses']);
+    $price = mysqli_real_escape_string($connection, $_POST['price']);
     $experience = mysqli_real_escape_string($connection, $_POST['experience']);
     $description = mysqli_real_escape_string($connection, $_POST['description']);
     $linked_in = mysqli_real_escape_string($connection, $_POST['linked_in']);
     $video_link = mysqli_real_escape_string($connection, $_POST['video_link']);
 
-    mysqli_query($connection, "INSERT INTO `requests`(`user_id`, `name`,`email`,`courses`, `experience`, `description`, `linked_in`, `video_link`) 
-    VALUES ('$user_id', '$name', '$email', '$courses', '$experience', '$description', '$linked_in', '$video_link')") or die('query failed2');
+    mysqli_query($connection, "INSERT INTO `requests`(`user_id`, `name`,`email`,`courses`, `price`,`experience`, `description`, `linked_in`, `video_link`) 
+    VALUES ('$user_id', '$name', '$email', '$courses', '$price','$experience', '$description', '$linked_in', '$video_link')") or die('query failed2');
 
     // Redirect to the result page to prevent form resubmission on page refresh
-    header('location: tutor_request.php?submitted=true');
+    header('location: requests.php');
     exit();
 }
 
@@ -44,7 +45,7 @@ $status = isset($requests) ? $requests['status'] : null;
 <body>
     <?php include 'header.php'; ?>
     <div class="banner">
-        <?php if ($status != 'pending'): ?>
+        <?php if ($status != NULL): ?>
         <h1 class="result">Status</h1>
         <?php else: ?>
         <h1>Tutor Request Form</h1>
@@ -68,6 +69,10 @@ $status = isset($requests) ? $requests['status'] : null;
                 <div class="form-group">
                     <label for="courses">Courses:</label>
                     <input type="text" id="courses" name="courses">
+                </div>
+                <div class="form-group">
+                    <label for="courses">Price per Hour:</label>
+                    <input type="text" id="price" name="price">
                 </div>
                 <div class="form-group">
                     <label for="experience">Experience:</label>

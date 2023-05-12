@@ -41,6 +41,7 @@ a {
   align-items: center;
 }
 .form-container form {
+  
   width: 50vw;
   height: auto;
   margin: 0 auto;
@@ -766,7 +767,7 @@ color: #000;
   color: var(--pink);
 }
 .contactpics {
-  width: 300px;
+  width: 236px;
   height: 250px;
 }
 .banner{
@@ -972,14 +973,14 @@ color: #000;
   text-align: center;
   color: gray;
 }
-.display-requestsss {
+.display-requests {
   box-shadow: var(--box-shadow);
   width: 50vw;
   margin: 1rem auto;
   text-align: center;
   line-height: 2;
 }
-.display-requestsss span {
+.display-requests span {
   display: inline-block;
   background: #ececec;
   padding: 0.4rem;
@@ -987,12 +988,7 @@ color: #000;
   border-radius: 3px;
   text-transform: capitalize;
 }
-.display-requestsss .grand-total {
-  width: 90%;
-  background: var(--pink);
-  color: #ffff;
-  cursor: pointer;
-}
+
 .checkout-form form {
   width: 50vw;
   box-shadow: var(--box-shadow);
@@ -1194,6 +1190,8 @@ color: #000;
 .rating-stars input[type="radio"]:checked ~ label {
   color: #f7d700;
 }
+
+
 
 
 

@@ -27,23 +27,26 @@
             </nav>
             <div class="icons">
                 <?php
-                // check if user has sent a requests
-                $select_requests = mysqli_query($connection, "SELECT * FROM `requests` WHERE user_id = '$user_id'") or die('query failed');
-                $requests_num_rows = mysqli_num_rows($select_requests);
+// Check if the user has sent any requests
+        $select_requests = mysqli_query($connection, "SELECT * FROM `requests` WHERE user_id = '$user_id'") or die('query failed');
+        $requests_num_rows = mysqli_num_rows($select_requests);
 
-                if ($requests_num_rows > 0) {
-                    // if requests exists, check if it is accepted
-                    $requests = mysqli_fetch_assoc($select_requests);
-                    $requests_status = $requests['status'];
-                    if ($requests_status == 'accepted') {
-                        echo '<i class="bi bi-person-check" id="requests-btn"></i>';
-                    } else {
-                        echo '<a href="requests.php"><i class="bi bi-person-plus" id="requests-btn"></i></a>';
-                    }
-                } else {
-                    // if no requests exists, show requests button
-                    echo '<a href="requests.php"><i class="bi bi-person-plus" id="requests-btn"></i></a>';
-                }
+        if ($requests_num_rows > 0) {
+    // If requests exist, check if it is accepted
+            $requests = mysqli_fetch_assoc($select_requests);
+            $requests_status = $requests['status'];
+
+        if ($requests_status == 'accepted') {
+        // Display a checkmark icon indicating the request is accepted
+            echo '<i class="bi bi-person-check" id="requests-btn"></i>';
+        } else {
+        // Display a link to the 'requests.php' page with an icon indicating the user can send a request
+            echo '<a href="requests.php"><i class="bi bi-person-plus" id="requests-btn"></i></a>';
+        }
+    } else {
+    // If no requests exist, show the requests button
+        echo '<a href="requests.php"><i class="bi bi-person-plus" id="requests-btn"></i></a>';
+}
 
                 // show favorites icon
                 $select_favorites = mysqli_query($connection, "SELECT * FROM `favorites` WHERE user_id = '$user_id'") or die('query failed');

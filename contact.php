@@ -41,14 +41,20 @@ if (isset($_POST['submit-btn'])) {
 <body>
 <?php include 'header.php'; ?> 
  <?php
-    if (isset($messages)) {
-        foreach ($messages as $messages) {
-            echo '<div class="message">
-                        <span>'. $messages .'</span>
-                        <i class="bi bi-x-circle" onclick="this.parentElement.remove()"></i>
-                    </div>';
-        }
+if (isset($messages)) {
+    // Check if the variable $messages is set
+
+    foreach ($messages as $messages) {
+        // Iterate over each element in the $messages array
+
+        echo '<div class="message">
+                    <span>'. $messages .'</span>
+                    <i class="bi bi-x-circle" onclick="this.parentElement.remove()"></i>
+                </div>';
+        // Output an HTML div element with the message and a close icon
     }
+}
+
     ?> 
     <div class="banner">
         <h1>contact us</h1>

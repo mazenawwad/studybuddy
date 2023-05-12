@@ -8,10 +8,18 @@ if (!isset($user_id)) {
 }
 /* deleting tutors from favorites */
 if (isset($_POST['delete_tutor'])) {
+    // Check if the form with the name 'delete_tutor' has been submitted
+
     $delete_id = $_POST['delete_tutor'];
+    // Get the value of the 'delete_tutor' form field and assign it to the variable $delete_id
+
     mysqli_query($connection, "DELETE FROM `favorites` WHERE id = '$delete_id'") or die('Query Failed');
+    // Execute a MySQL DELETE query to remove the record from the 'favorites' table where the id matches $delete_id
+
     header('location:favorites.php');
+    // Redirect the user to the 'favorites.php' page after the deletion is complete
 }
+
 ?>
 <style type="text/css">
 

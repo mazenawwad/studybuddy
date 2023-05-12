@@ -137,7 +137,6 @@ header {
   background: #fff;
   box-shadow: var(--box-shadow);
   border-radius: 5px;
-  text-transform: capitalize;
   color: #555;
   font-size: 12px;
   display: none;
@@ -147,7 +146,6 @@ header {
   display: block;
 }
 .header .user-box span {
-  text-transform: capitalize;
   color: var(--blue);
   font-size: 14px;
 }

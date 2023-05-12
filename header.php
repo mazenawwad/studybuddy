@@ -59,8 +59,8 @@
             </div>
 
             <div class="user-box">
-                <p>username: <span><?php echo $_SESSION['user_name']; ?></span></p>
-                <p>email : <span><?php echo $_SESSION['user_email']; ?></span></p>
+                <p>Username: <span><?php echo $_SESSION['user_name']; ?></span></p>
+                <p>Email : <span><?php echo $_SESSION['user_email']; ?></span></p>
                 <br>
                 <form method="post" class="logout">
                     <button name="logout" class="logout-btn">LOG OUT</button>

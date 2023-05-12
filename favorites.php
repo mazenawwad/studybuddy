@@ -39,7 +39,7 @@ if (isset($_POST['delete_tutor'])) {
     <?php include 'header.php'; ?>
     <div class="banner">
         <h1>my favorites</h1>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+    
     </div>
     <div class="tutors">
         <h1 class="title">tutors added in favorites </h1>

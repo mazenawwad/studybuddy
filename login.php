@@ -58,8 +58,8 @@ if (isset($_POST['submit-btn'])) {
     ?>
 
     <section class="form-container">
-        <form action="" method="post">
-            <h3>Login</h3>
+        <form action="" method="post"  class="loginForm">
+            <h3 style="font-size:xx-large">Login</h3>
             <input type="email" name="email" placeholder="Enter Your Email" required>
             <input type="password" name="password" placeholder="Enter Your Password" required>
             <input type="submit" name="submit-btn" class="btn" value="Login">

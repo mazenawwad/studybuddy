@@ -63,8 +63,8 @@ if (isset($_POST['submit-btn'])) {
             }
         ?>
     <section class="form-container">
-        <form action="" method="post">
-            <h3>Register </h3>
+        <form action="" method="post" class="registerForm">
+            <h3 style="font-size:xx-large">Register </h3>
             <input type="text" name="name" placeholder="Enter Your Name" required>
             <input type="email" name="email" placeholder="Enter Your Email" required>
             <input type="password" name="password" placeholder="Enter Your Password" required>

@@ -501,9 +501,11 @@ color: #000;
   cursor: pointer;
   width: 300px;
   height: 250px;
+  transition: all 300ms;
 }
 .categories .box-container .box:hover {
   color: var(--pink);
+  transform: scale(1.05);
 }
 .categories .box-container .box img {
   width: 250px;

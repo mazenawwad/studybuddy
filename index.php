@@ -27,8 +27,7 @@
  }
  ?>
  <style type="text/css">
-<?php 
-?>
+<?php ?>
  </style>
  <!DOCTYPE html>
  <html lang="en">
@@ -149,8 +148,9 @@
                      </p>
                  </div>
                  <br><br>
-                    <a href="reviews.php?pid=<?php echo $fetch_tutors['id']; ?>" class="button"> Check Reviews</a>
-                    <a href="<?php echo $fetch_tutors['linked_in']; ?>" target="_blank" class="button">Tutor Information</a>
+                 <a href="reviews.php?pid=<?php echo $fetch_tutors['id']; ?>" class="button"> Check Reviews</a>
+                 <a href="<?php echo $fetch_tutors['linked_in']; ?>" target="_blank" class="button">Tutor
+                     Information</a>
              </div>
 
              <?php

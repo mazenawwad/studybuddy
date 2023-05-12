@@ -84,9 +84,6 @@ if (!isset($user_id)) {
   </form>
 </div>
 
-
-
-
     <?php
 if (isset($_POST['reviews-rating']) && isset($_POST['reviews-text'])) {
     $rating = $_POST['reviews-rating'];
@@ -95,7 +92,7 @@ if (isset($_POST['reviews-rating']) && isset($_POST['reviews-text'])) {
     $userId = $user_id; // Replace with the actual user ID
 
     // Check if user ID and tutor ID are the same
-    if ($userId == $_SESSION['user_id']) {
+    if ($userId == $tutorId) {
         $message[] = "You cannot review yourself.";
     } else {
         // Check if user has already reviewed this tutor

@@ -36,11 +36,15 @@
     </header>
 
     <?php
-        if(isset($_POST['logout'])) {
-            header('Location: login.php');
-            exit;
-        }
-    ?>
+    // Check if the 'logout' form has been submitted
+    if(isset($_POST['logout'])) {
+        // Redirect the user to the login page
+        header('Location: login.php');
+        // Terminate the script execution
+        exit;
+    }
+?>
+
 </body>
 
 </html>

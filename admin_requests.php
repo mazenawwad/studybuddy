@@ -2,37 +2,73 @@
 include 'connection.php';
 session_start();
 $admin_id = $_SESSION['admin_id'];
+// Check if the admin ID is not set
 if (!isset($admin_id)) {
+    // Redirect the admin to the login page
     header('location: login.php');
 }
+
+// Check if the 'logout' form has been submitted
 if (isset($_POST['logout'])) {
+    // Destroy the session
     session_destroy();
+    // Redirect the admin to the login page
     header('location: login.php');
 }
-/* delete requests detail from database */ 
+/* delete requests detail from database */
 if (isset($_GET['delete'])) {
+    // Retrieve the delete ID from the URL parameter
     $delete_id = $_GET['delete'];
+    // Execute the delete query on the 'requests' table
     mysqli_query($connection, "DELETE FROM `requests` WHERE id = '$delete_id'") or die('Query Failed');
-    header('location:admin_requests.php');
+    // Redirect the admin to the 'admin_requests.php' page
+    header('location: admin_requests.php');
 }
+
 
 /* update requests detail */
 if (isset($_POST['update_request'])) {
+    // Check if the 'update_request' form has been submitted
+
     $request_id = $_POST['request_id'];
+    // Retrieve the request ID from the form data
+
     $update_status = $_POST['status'];
+    // Retrieve the updated status from the form data
+
     $message = '';
+    // Initialize the $message variable to an empty string
+
     if ($update_status == 'accepted') {
+        // If the updated status is 'accepted'
+
         mysqli_query($connection, "UPDATE `requests` SET status='accepted' WHERE id='$request_id'") or die('query failed');
+        // Execute the update query on the 'requests' table to set the status to 'accepted' for the specified request ID
+
         $message = 'Application accepted and payment ';
+        // Set the message indicating that the application was accepted
     } elseif ($update_status == 'rejected') {
+        // If the updated status is 'rejected'
+
         mysqli_query($connection, "UPDATE `requests` SET status='rejected' WHERE id='$request_id'") or die('query failed');
+        // Execute the update query on the 'requests' table to set the status to 'rejected' for the specified request ID
+
         $message = 'Application rejected and payment ';
+        // Set the message indicating that the application was rejected
     } elseif ($update_status == 'pending') {
+        // If the updated status is 'pending'
+
         mysqli_query($connection, "UPDATE `requests` SET status='pending' WHERE id='$request_id'") or die('query failed');
+        // Execute the update query on the 'requests' table to set the status to 'pending' for the specified request ID
+
         $message = 'Application status set to pending a';
+        // Set the message indicating that the application status was set to pending
     }
+
     header('location:admin_requests.php?message=' . urlencode($message));
+    // Redirect the admin to the 'admin_requests.php' page with a URL parameter 'message' that contains the encoded message
 }
+
 ?>
 
 <!DOCTYPE html>

@@ -63,11 +63,19 @@ if (isset($_POST['update_tutor'])) {
     $current_image = $_POST['current_image'];
     
     if ($_FILES['update_p_image']['name'] != '') {
-        // a new image is selected, update it
+        // Check if a new image file is selected for upload
+    
         $update_p_img = $_FILES['update_p_image']['name'];
+        // Retrieve the name of the new image file
+    
         $update_p_image_tmp_name = $_FILES['update_p_image']['tmp_name'];
+        // Retrieve the temporary filename/location of the new image file
+    
         $update_p_image_folder = 'image/'.$update_p_img;
+        // Specify the folder and filename where the new image file will be stored
+    
         move_uploaded_file($update_p_image_tmp_name, $update_p_image_folder);
+        // Move the uploaded image file from the temporary location to the specified folder
         // delete the old image
     } else {
         // no new image selected, keep the current one

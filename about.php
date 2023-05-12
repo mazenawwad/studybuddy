@@ -2,10 +2,15 @@
      include 'connection.php';
     session_start();
 
-     $user_id = $_SESSION['user_id'];
-     if (!isset($user_id)) {
-         header('location: login.php');
-     }
+// Get the user ID from the session
+$user_id = $_SESSION['user_id'];
+
+// Check if the user ID is not set
+if (!isset($user_id)) {
+    // Redirect the user to the login page
+    header('location: login.php');
+}
+
     ?>
 <!DOCTYPE html>
 <html lang="en">

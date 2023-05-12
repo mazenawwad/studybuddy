@@ -11,27 +11,57 @@ if (isset($_POST['logout'])) {
     header('location: login.php');
 }
 if (isset($_GET['delete'])) {
+    // Check if the 'delete' parameter is present in the URL query string
+
     $delete_id = $_GET['delete'];
+    // Retrieve the value of the 'delete' parameter from the URL query string
+
     $select_review = mysqli_query($connection, "SELECT * FROM `reviews` WHERE id = '$delete_id'");
+    // Execute a SELECT query on the 'reviews' table to retrieve the review with the specified ID
+
     if (mysqli_num_rows($select_review) > 0) {
+        // Check if a review with the specified ID exists
+
         $fetch_review = mysqli_fetch_assoc($select_review);
+        // Fetch the data of the review from the result of the SELECT query
+
         $tutor_id = $fetch_review['tutor_id'];
         $rating = $fetch_review['rating'];
+        // Retrieve the tutor ID and rating from the fetched review data
+
         $select_tutor = mysqli_query($connection, "SELECT * FROM `tutors` WHERE id = '$tutor_id'");
+        // Execute a SELECT query on the 'tutors' table to retrieve the tutor with the specified ID
+
         if (mysqli_num_rows($select_tutor) > 0) {
+            // Check if a tutor with the specified ID exists
+
             $fetch_tutor = mysqli_fetch_assoc($select_tutor);
+            // Fetch the data of the tutor from the result of the SELECT query
+
             $total_ratings = $fetch_tutor['total_ratings'];
             $raters = $fetch_tutor['raters'];
+            // Retrieve the total ratings and raters count from the fetched tutor data
+
             if ($raters > 0) {
+                // Check if there are existing raters for the tutor
+
                 $new_total_ratings = $total_ratings - $rating;
                 $new_raters = $raters - 1;
+                // Calculate the new total ratings and raters count by subtracting the rating of the deleted review
+
                 mysqli_query($connection, "UPDATE `tutors` SET total_ratings = '$new_total_ratings', raters = '$new_raters' WHERE id = '$tutor_id'");
+                // Execute an UPDATE query on the 'tutors' table to update the total ratings and raters count for the tutor
             }
         }
     }
+
     mysqli_query($connection, "DELETE FROM `reviews` WHERE id = '$delete_id'") or die('Query Failed');
+    // Execute a DELETE query on the 'reviews' table to delete the review with the specified ID
+
     header('location:admin_reviews.php');
+    // Redirect the admin to the 'admin_reviews.php' page after deleting the review
 }
+
 
 
 ?>
@@ -71,56 +101,47 @@ if (isset($_GET['delete'])) {
     </div>
     <div class="box-container">
         <?php
-        if (isset($_POST['submit'])) {
-            $search = mysqli_real_escape_string($connection, $_POST['search']);
-            $select_reviews = mysqli_query($connection, "SELECT * FROM `reviews`") or die('query failed');
-            if (mysqli_num_rows($select_reviews) > 0) {
-                while ($fetch_reviews = mysqli_fetch_assoc($select_reviews)) {
-                    $tutor_id = $fetch_reviews['tutor_id'];
-                    $select_tutors = mysqli_query($connection, "SELECT * FROM `tutors` WHERE id = '$tutor_id'") or die('query failed');
-                    $fetch_tutors = mysqli_fetch_assoc($select_tutors);
-                    $search = strtolower($search);
-                    $tutor_name = strtolower($fetch_tutors['name']);
-                    $tutor_id = strtolower($fetch_reviews['tutor_id']);
-
-                    if (strpos($tutor_name, $search) !== false || strpos($tutor_id, $search) !== false) {
-                        echo '<div class="box">
-                        <p>Tutor Name: <span>' . $fetch_tutors['name'] . '</span></p>
-                        <p>Tutor ID: <span>' . $fetch_reviews['tutor_id'] . '</span></p>
-                        <div class="rating">';
-                        $rating = $fetch_reviews['rating'];
-                        for ($i = 0; $i < 5; $i++) {
-                            if ($rating >= $i + 1) {
-                                echo '<span class="fa fa-star checked"></span>';
-                            } else if ($rating > $i) {
-                                echo '<span class="fa fa-star-half-o checked"></span>';
-                            } else {
-                                echo '<span class="fa fa-star-o"></span>';
-                            }
-                        }
-                        echo '</div>
-                      <p>Rated by: ' . $fetch_tutors['raters'] . ' users</p>
-                      <p>reviews: <span>' . $fetch_reviews['text'] . '</span></p>
-                      <a href="admin_reviews.php?delete=' . $fetch_reviews['id'] . '" class="delete" onclick="return confirm(\'delete this\')">Delete</a>
-                    </div>';
-                    }
-                }
-            }
-            else {
-                echo "No results found";
-            }
-        } else {
-            $select_reviews = mysqli_query($connection, "SELECT * FROM `reviews`") or die('query failed');
-            if (mysqli_num_rows($select_reviews) > 0) {
-                while ($fetch_reviews = mysqli_fetch_assoc($select_reviews)) {
-                    $tutor_id = $fetch_reviews['tutor_id'];
-                    $select_tutors = mysqli_query($connection, "SELECT * FROM `tutors` WHERE id = '$tutor_id'") or die('query failed');
-                    $fetch_tutors = mysqli_fetch_assoc($select_tutors);
+       if (isset($_POST['submit'])) {
+        // Check if the form with the name 'submit' is submitted
+    
+        $search = mysqli_real_escape_string($connection, $_POST['search']);
+        // Retrieve the value of the 'search' input field from the submitted form and escape special characters
+    
+        $select_reviews = mysqli_query($connection, "SELECT * FROM `reviews`") or die('query failed');
+        // Execute a SELECT query to retrieve all reviews from the 'reviews' table
+    
+        if (mysqli_num_rows($select_reviews) > 0) {
+            // Check if there are reviews available
+    
+            while ($fetch_reviews = mysqli_fetch_assoc($select_reviews)) {
+                // Fetch each review data from the result of the SELECT query
+    
+                $tutor_id = $fetch_reviews['tutor_id'];
+                // Retrieve the tutor ID from the fetched review data
+    
+                $select_tutors = mysqli_query($connection, "SELECT * FROM `tutors` WHERE id = '$tutor_id'") or die('query failed');
+                // Execute a SELECT query to retrieve the tutor with the specified ID
+    
+                $fetch_tutors = mysqli_fetch_assoc($select_tutors);
+                // Fetch the data of the tutor from the result of the SELECT query
+    
+                $search = strtolower($search);
+                $tutor_name = strtolower($fetch_tutors['name']);
+                $tutor_id = strtolower($fetch_reviews['tutor_id']);
+                // Convert the search term, tutor name, and tutor ID to lowercase for case-insensitive comparison
+    
+                if (strpos($tutor_name, $search) !== false || strpos($tutor_id, $search) !== false) {
+                    // Check if the search term is present in the lowercase tutor name or tutor ID
+    
                     echo '<div class="box">
                     <p>Tutor Name: <span>' . $fetch_tutors['name'] . '</span></p>
                     <p>Tutor ID: <span>' . $fetch_reviews['tutor_id'] . '</span></p>
                     <div class="rating">';
+                    // Output the tutor name and ID in an HTML paragraph and display the rating stars
+    
                     $rating = $fetch_reviews['rating'];
+                    // Retrieve the rating from the fetched review data
+    
                     for ($i = 0; $i < 5; $i++) {
                         if ($rating >= $i + 1) {
                             echo '<span class="fa fa-star checked"></span>';
@@ -131,14 +152,67 @@ if (isset($_GET['delete'])) {
                         }
                     }
                     echo '</div>
-                    <p>reviews: <span>' . $fetch_reviews['text'] . '</span></p>
-                    <a href="admin_reviews.php?delete=' . $fetch_reviews['id'] . '" class="delete" onclick="return confirm(\'delete this\')">Delete</a>
-                    </div>';
+                  <p>Rated by: ' . $fetch_tutors['raters'] . ' users</p>
+                  <p>reviews: <span>' . $fetch_reviews['text'] . '</span></p>
+                  <a href="admin_reviews.php?delete=' . $fetch_reviews['id'] . '" class="delete" onclick="return confirm(\'delete this\')">Delete</a>
+                </div>';
+                // Output the tutor's rating, number of raters, review text, and a delete link for each matched result
                 }
-            } else {
-                echo "No reviews found";
             }
         }
+        else {
+            echo "No results found";
+        }
+    }
+    else {
+        // This block is executed when the form with the name 'submit' is not submitted
+    
+        $select_reviews = mysqli_query($connection, "SELECT * FROM `reviews`") or die('query failed');
+        // Execute a SELECT query to retrieve all reviews from the 'reviews' table
+    
+        if (mysqli_num_rows($select_reviews) > 0) {
+            // Check if there are reviews available
+    
+            while ($fetch_reviews = mysqli_fetch_assoc($select_reviews)) {
+                // Fetch each review data from the result of the SELECT query
+    
+                $tutor_id = $fetch_reviews['tutor_id'];
+                // Retrieve the tutor ID from the fetched review data
+    
+                $select_tutors = mysqli_query($connection, "SELECT * FROM `tutors` WHERE id = '$tutor_id'") or die('query failed');
+                // Execute a SELECT query to retrieve the tutor with the specified ID
+    
+                $fetch_tutors = mysqli_fetch_assoc($select_tutors);
+                // Fetch the data of the tutor from the result of the SELECT query
+    
+                echo '<div class="box">
+                <p>Tutor Name: <span>' . $fetch_tutors['name'] . '</span></p>
+                <p>Tutor ID: <span>' . $fetch_reviews['tutor_id'] . '</span></p>
+                <div class="rating">';
+                // Output the tutor name and ID in an HTML paragraph and display the rating stars
+    
+                $rating = $fetch_reviews['rating'];
+                // Retrieve the rating from the fetched review data
+    
+                for ($i = 0; $i < 5; $i++) {
+                    if ($rating >= $i + 1) {
+                        echo '<span class="fa fa-star checked"></span>';
+                    } else if ($rating > $i) {
+                        echo '<span class="fa fa-star-half-o checked"></span>';
+                    } else {
+                        echo '<span class="fa fa-star-o"></span>';
+                    }
+                }
+                echo '</div>
+                <p>reviews: <span>' . $fetch_reviews['text'] . '</span></p>
+                <a href="admin_reviews.php?delete=' . $fetch_reviews['id'] . '" class="delete" onclick="return confirm(\'delete this\')">Delete</a>
+                </div>';
+                // Output the tutor's rating, review text, and a delete link for each review
+            }
+        } else {
+            echo "No reviews found";
+        }
+    }    
         ?>
     </div>
     </section>

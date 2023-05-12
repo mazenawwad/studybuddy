@@ -29,8 +29,6 @@
  
  ?>
 <style type="text/css">
-<?php include 'main.css';
-?>
 </style>
 <!DOCTYPE html>
 <html lang="en">

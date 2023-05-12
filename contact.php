@@ -18,19 +18,14 @@ if (isset($_POST['submit-btn'])) {
     message='$message'") or die('query failed1');
 
     if (mysqli_num_rows($select_message) > 0) {
-        $message[] = 'message already sent';
+
     } else {
         mysqli_query($connection, "INSERT INTO `messages`(`user_id`, `name`,`email`, `message`) 
         VALUES ('$user_id', '$name', '$email', '$message')") or die('query failed2');
-        $message[] = 'message sent successfully';
+        $messages[] = 'message sent successfully';
     }
 }
 ?>
-
-<style type="text/css">
-<?php include 'main.css';
-?>
-</style>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -44,17 +39,17 @@ if (isset($_POST['submit-btn'])) {
 </head>
 
 <body>
+<?php include 'header.php'; ?> 
  <?php
-    if (isset($message)) {
-        foreach ($message as $message) {
+    if (isset($messages)) {
+        foreach ($messages as $messages) {
             echo '<div class="message">
-                        <span>'. $message .'</span>
+                        <span>'. $messages .'</span>
                         <i class="bi bi-x-circle" onclick="this.parentElement.remove()"></i>
                     </div>';
         }
     }
     ?> 
-    <?php include 'header.php'; ?> 
     <div class="banner">
         <h1>contact us</h1>
         <p>Always here for you! </p>
@@ -107,3 +102,5 @@ if (isset($_POST['submit-btn'])) {
     </div>
     
     <?php include 'footer.php'; ?>
+</body>
+</html>

@@ -20,10 +20,20 @@ if (isset($_POST['submit-btn'])) {
         if ($password != $confirm_password) {
             $message[] = 'Passwords does not match';
         } else {
-            mysqli_query($connection, "INSERT INTO `users` (`name`, `email`,`password`) VALUES ('$name', '$email', '$password')") 
-            or die('Query Failed');
-            $message[] = 'Registered Successfully!';
-            header('location: login.php');
+            // Password requirements
+            $uppercase = preg_match('@[A-Z]@', $password);
+            $lowercase = preg_match('@[a-z]@', $password);
+            $number    = preg_match('@[0-9]@', $password);
+            $specialChars = preg_match('@[^\w]@', $password);
+
+            if(!$uppercase || !$lowercase || !$number || !$specialChars || strlen($password) < 8) {
+                $message[] = 'Password should be at least 8 characters in length and should include at least one upper case letter, one number, and one special character.';
+            } else {
+                mysqli_query($connection, "INSERT INTO `users` (`name`, `email`, `password`) VALUES ('$name', '$email', '$password')") 
+                or die('Query Failed');
+                $message[] = 'Registered Successfully!';
+                header('location: login.php');
+            }
         }
     }
 }

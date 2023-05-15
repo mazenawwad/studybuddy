@@ -15,6 +15,8 @@ if (isset($_POST['logout'])) {
     // Redirect the admin to the login page
     header('location: login.php');
 }
+
+
 /* delete requests detail from database */
 if (isset($_GET['delete'])) {
     // Retrieve the delete ID from the URL parameter

@@ -16,6 +16,7 @@ if (isset($_GET['delete'])) {
     header('location:admin_requests.php');
 }
 
+
 /* update requests detail */
 if (isset($_POST['update_request'])) {
     $request_id = $_POST['request_id'];
